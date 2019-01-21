@@ -10,22 +10,26 @@ public class Main {
         sol.check_rotate();
 
         while (sol.battle) {
+            sol.initialize();
+            sol.damage+=1;
+            System.out.print("ラウンド"+sol.damage);
             while (sol.player_ready == false || sol.enemy_ready == false) {
-                sol.initialize();
                 if (sol.turn == true) {
-
-                    sol.getItem();
                     sol.player_turn();
+                }else{
+                    sol.enemy_turn();
                 }
+            }
+            sol.judge();
+            sol.player_ready=false;
+            sol.enemy_ready=false;
+            if(sol.player_hp<=0){
+                System.out.print("Game Set!! CPUの勝ち。");
+                sol.battle=false;
+            }else if (sol.enemy_hp<=0){
+                System.out.print("Game Set!! あなたの勝ち!!!!");
+                sol.battle=false;
             }
         }
     }
 }
-
-
-
-
-
-
-
-
