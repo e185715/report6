@@ -8,6 +8,8 @@ import java.util.Scanner;
 
 
 class Solver {
+    String[] intro = {"Twenty-Oneはカードを1枚ずつ引いていき,合計を21にすることを目指すゲームだよ。\n 山札は1〜11が1枚ずつ、初期手札2枚が勝負のはじめに互いに配られるよ。\nお互いの1枚目の手札は見ることが出来て、\n初期体力はお互い7だよ、勝負に負けるとラウンドの数だけ体力が減るよ。\n相手の体力を減らしきれば勝ちだよ！ルール説明は以上！", "各コマンドに割り当てられた数字を入力すると行動できて、それ以外の入力でゲームやめることが出来るよ。"};
+    List<String>Intro = new ArrayList<String>(Arrays.asList(intro));
     String[] cards = new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11"};
     List<String> deck = new ArrayList<String>(Arrays.asList(cards));
     List<String> player_hands = new ArrayList<>(), enemy_hands = new ArrayList<>();
@@ -123,6 +125,7 @@ class Solver {
 
     void player_turn() {//プレーヤーのターン時の画面
         player_ready = false;
+        System.out.print("CPUの手札に" + enemy_hands.get(0) + "があります！");
         String[] action = {"1:カードを引く, 2:これでしょうぶ！"};
         System.out.println("---あなたのターンです！---\n自分の手札" + player_hands + "\nあなたの番だよ！どうする？(番号を入力してね)\n" + Arrays.asList(action));
         input = Integer.parseInt(scan.nextLine());
@@ -135,6 +138,7 @@ class Solver {
                 changeTurn();
                 break;
             case 2:
+                Sum();
                 changeTurn();
                 player_ready = true;
                 break;
@@ -149,7 +153,7 @@ class Solver {
      */
     void enemy_turn() {
         enemy_ready = false;
-        System.out.println("---CPUのターン---\nCPUの手札に" + enemy_hands.get(0) + "があります！");
+        System.out.println("\n---CPUのターン---");
         enemy_sum = 0;
         Sum();
         if (enemy_sum < 16) {
