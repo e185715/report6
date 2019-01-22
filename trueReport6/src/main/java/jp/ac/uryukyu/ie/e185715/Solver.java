@@ -123,18 +123,18 @@ class Solver {
 
     void player_turn() {//プレーヤーのターン時の画面
         player_ready = false;
-        String[] action = {"1:アイテムリスト, 2:カードを引く, 3:これでしょうぶ！"};
+        String[] action = {"1:カードを引く, 2:これでしょうぶ！"};
         System.out.println("---あなたのターンです！---\n自分の手札" + player_hands + "\nあなたの番だよ！どうする？(番号を入力してね)\n" + Arrays.asList(action));
         input = Integer.parseInt(scan.nextLine());
         switch (input) {
-            case 2:
+            case 1:
                 draw();
                 player_sum = 0;
                 Sum();
                 System.out.println(player_hands.get(player_hands.size() - 1) + "を引いた！\nあなたの手札" + player_hands + "\n合計=" + player_sum+"\n");
                 changeTurn();
                 break;
-            case 3:
+            case 2:
                 changeTurn();
                 player_ready = true;
                 break;
