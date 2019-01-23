@@ -8,14 +8,13 @@ public class Main {
         if (sol.input==1){
             System.out.print(sol.Intro);
         }
-        sol.input = Integer.parseInt(sol.scan.nextLine());
-        System.out.print("先攻後攻を選んでね。\n1:先攻\t2:後攻\t3:おまかせ");
+        System.out.print("\n先攻後攻を選んでね。\n1:先攻\t2:後攻\t3:おまかせ\n");
         sol.check_rotate();
 
         while (sol.battle) {
             sol.initialize();
             sol.damage+=1;
-            System.out.print("ラウンド"+sol.damage);
+            System.out.print("--ラウンド"+sol.damage+"--\n");
             while (sol.player_ready == false || sol.enemy_ready == false) {
                 if (sol.turn == true) {
                     sol.player_turn();

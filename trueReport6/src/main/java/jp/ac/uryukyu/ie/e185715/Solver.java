@@ -125,9 +125,8 @@ class Solver {
 
     void player_turn() {//プレーヤーのターン時の画面
         player_ready = false;
-        System.out.print("CPUの手札に" + enemy_hands.get(0) + "があります！");
         String[] action = {"1:カードを引く, 2:これでしょうぶ！"};
-        System.out.println("---あなたのターンです！---\n自分の手札" + player_hands + "\nあなたの番だよ！どうする？(番号を入力してね)\n" + Arrays.asList(action));
+        System.out.println("---あなたのターンです！---\n自分の手札" + player_hands + "\tCPUの手札に" + enemy_hands.get(0) + "があります！\nあなたの番だよ！どうする？(番号を入力してね)\n" + Arrays.asList(action));
         input = Integer.parseInt(scan.nextLine());
         switch (input) {
             case 1:
@@ -138,6 +137,7 @@ class Solver {
                 changeTurn();
                 break;
             case 2:
+                player_sum=0;
                 Sum();
                 changeTurn();
                 player_ready = true;
@@ -182,12 +182,12 @@ class Solver {
                 enemy_hp -= damage;
             }
         }
-        if(player_sum<goal&&enemy_sum>goal){
+        if(player_sum<=goal&&enemy_sum>goal){
             enemy_hp-=damage;
-        }else if(player_sum>goal&&enemy_sum<goal){
+        }else if(player_sum>goal&&enemy_sum<=goal){
             player_hp-=damage;
         }
-        if(player_sum<goal&&enemy_sum<goal){
+        if(player_sum<=goal&&enemy_sum<=goal){
             if(player_sum>enemy_sum){
                 enemy_hp-=damage;
             }else{
